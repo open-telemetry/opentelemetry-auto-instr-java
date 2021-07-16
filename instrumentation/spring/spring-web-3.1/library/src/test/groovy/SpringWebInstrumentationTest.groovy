@@ -4,7 +4,7 @@
  */
 
 import io.opentelemetry.api.common.AttributeKey
-import io.opentelemetry.instrumentation.spring.httpclients.SpringWebTracing
+import io.opentelemetry.instrumentation.spring.web.SpringWebTracing
 import io.opentelemetry.instrumentation.test.LibraryTestTrait
 import io.opentelemetry.instrumentation.test.base.HttpClientTest
 import io.opentelemetry.semconv.trace.attributes.SemanticAttributes
