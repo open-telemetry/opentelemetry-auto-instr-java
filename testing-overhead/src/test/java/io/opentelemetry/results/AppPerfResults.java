@@ -2,11 +2,11 @@
  * Copyright The OpenTelemetry Authors
  * SPDX-License-Identifier: Apache-2.0
  */
-package io.opentelemetry;
+package io.opentelemetry.results;
 
 import io.opentelemetry.config.TestConfig;
 
-class AppPerfResults {
+public class AppPerfResults {
 
   private final String agent;
   private final TestConfig config;
@@ -159,8 +159,8 @@ class AppPerfResults {
     }
   }
 
-  static class MinMax {
-    long min = Long.MAX_VALUE;
-    long max = Long.MIN_VALUE;
+  public static class MinMax {
+    public long min = Long.MAX_VALUE;
+    public long max = Long.MIN_VALUE;
   }
 }
