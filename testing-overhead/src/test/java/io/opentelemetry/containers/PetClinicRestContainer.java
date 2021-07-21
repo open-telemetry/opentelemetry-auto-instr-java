@@ -32,11 +32,13 @@ public class PetClinicRestContainer {
   private final Network network;
   private final Startable collector;
   private final String agentName;
+  private final NamingConvention namingConvention;
 
-  public PetClinicRestContainer(Network network, Startable collector, String agentName) {
+  public PetClinicRestContainer(Network network, Startable collector, String agentName, NamingConvention namingConvention) {
     this.network = network;
     this.collector = collector;
     this.agentName = agentName;
+    this.namingConvention = namingConvention;
   }
 
   public GenericContainer<?> build() throws IOException {
@@ -65,10 +67,10 @@ public class PetClinicRestContainer {
 
   @NotNull
   private String[] buildCommandline(Optional<Path> agent) {
-    String jfrFile = "petclinic-" + agentName + ".jfr";
+    Path jfrFile = namingConvention.jfrFile(agentName);
     List<String> result = new ArrayList<>(Arrays.asList(
         "java",
-        "-XX:StartFlightRecording:dumponexit=true,disk=true,settings=profile,name=petclinic,filename=/results/"
+        "-XX:StartFlightRecording:dumponexit=true,disk=true,settings=profile,name=petclinic,filename="
             + jfrFile,
         "-Dotel.traces.exporter=otlp",
         "-Dotel.imr.export.interval=5000",

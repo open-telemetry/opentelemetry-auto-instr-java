@@ -13,6 +13,7 @@ import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.containers.startupcheck.OneShotStartupCheckStrategy;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
+import java.nio.file.Path;
 import java.time.Duration;
 
 public class K6Container {
@@ -20,15 +21,17 @@ public class K6Container {
   private final Network network;
   private final String agent;
   private final TestConfig config;
+  private final NamingConvention namingConvention;
 
-  public K6Container(Network network, String agent, TestConfig config) {
+  public K6Container(Network network, String agent, TestConfig config, NamingConvention namingConvention) {
     this.network = network;
     this.agent = agent;
     this.config = config;
+    this.namingConvention = namingConvention;
   }
 
   public GenericContainer<?> build(){
-    String k6OutputFile = "/results/k6_out_" + agent + ".json";
+    Path k6OutputFile = namingConvention.k6Results(agent);
     return new GenericContainer<>(
         DockerImageName.parse("loadimpact/k6"))
         .withNetwork(network)
@@ -42,7 +45,7 @@ public class K6Container {
             "-u", String.valueOf(config.getConcurrentConnections()),
             "-i", String.valueOf(config.getTotalIterations()),
             "--rps", String.valueOf(config.getMaxRequestRate()),
-            "--summary-export", k6OutputFile,
+            "--summary-export", k6OutputFile.toString(),
             "/app/basic.js"
         )
         .withStartupCheckStrategy(
