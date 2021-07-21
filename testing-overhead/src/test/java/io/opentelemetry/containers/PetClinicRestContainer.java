@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import io.opentelemetry.NamingConvention;
 import io.opentelemetry.agents.AgentResolver;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;

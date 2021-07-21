@@ -4,6 +4,7 @@
  */
 package io.opentelemetry;
 
+import io.opentelemetry.config.TestConfig;
 import java.util.Map;
 import java.util.function.Function;
 

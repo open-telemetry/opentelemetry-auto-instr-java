@@ -4,6 +4,7 @@
  */
 package io.opentelemetry.containers;
 
+import io.opentelemetry.NamingConvention;
 import io.opentelemetry.config.TestConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

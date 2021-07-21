@@ -4,6 +4,8 @@
  */
 package io.opentelemetry;
 
+import io.opentelemetry.config.TestConfig;
+
 class AppPerfResults {
 
   private final String agent;

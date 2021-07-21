@@ -6,6 +6,7 @@ package io.opentelemetry;
 
 import com.jayway.jsonpath.JsonPath;
 import io.opentelemetry.AppPerfResults.MinMax;
+import io.opentelemetry.config.TestConfig;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
